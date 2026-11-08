@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ml"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>അമ്പലപ്പാറ യൂണിറ്റ് ഖുർആൻ ക്വിസ്</title>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Anek+Malayalam:wght@400;600;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:'Anek Malayalam',sans-serif;color:#fff;background:radial-gradient(circle at 50% 0,#12805c,#06382a 60%,#021c15);text-align:center;overflow-x:hidden}
+body:before{content:"✦ ☪ ✦ ☪ ✦ ☪ ✦ ☪ ✦ ☪ ✦";position:fixed;top:0;left:0;right:0;font-size:28px;color:#ffd54a33;letter-spacing:22px;white-space:nowrap;animation:dr 14s linear infinite}
+@keyframes dr{from{transform:translateY(-10vh)}to{transform:translateY(110vh)}}
+.w{max-width:620px;margin:auto;padding:18px;position:relative}
+.top{font-weight:800;font-size:clamp(16px,4.5vw,22px);color:#ffe9a0;margin-top:8px;letter-spacing:1px}
+.t3{font:clamp(46px,15vw,104px)/1 'Titan One',Impact,sans-serif;color:#ffd54a;margin:10px 0;text-shadow:0 1px #e8b100,0 2px #d19c00,0 3px #b98900,0 4px #a07700,0 5px #876500,0 6px #6e5200,0 7px #553f00,0 14px 18px #000a;transform:perspective(520px) rotateX(16deg);animation:fl 3s ease-in-out infinite alternate}
+@keyframes fl{to{transform:perspective(520px) rotateX(6deg) translateY(-6px)}}
+.sub{color:#cdeede;margin-bottom:14px}
+.card{background:#ffffff14;border:1px solid #ffffff30;border-radius:20px;padding:20px;backdrop-filter:blur(6px);box-shadow:0 12px 30px #0006}
+input{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:0;font:inherit;font-size:17px;text-align:center}
+.b{display:block;width:100%;padding:14px;margin:10px 0;border:0;border-radius:14px;font:800 17px 'Anek Malayalam';color:#3a2a00;background:linear-gradient(#ffe27a,#ffc107);box-shadow:0 6px 0 #a67c00,0 10px 14px #0006;cursor:pointer;transition:.1s}
+.b:active{transform:translateY(5px);box-shadow:0 1px 0 #a67c00}
+.b.g{background:linear-gradient(#fff,#d7efe3);color:#06382a;box-shadow:0 6px 0 #7aa892,0 10px 14px #0006}
+.o{color:#06382a;background:linear-gradient(#fff,#e2f5ea);box-shadow:0 5px 0 #7aa892;text-align:left;font-weight:700}
+.o.s{background:linear-gradient(#ffe27a,#ffc107);box-shadow:0 1px 0 #a67c00;transform:translateY(4px)}
+.q{font-size:20px;font-weight:800;line-height:1.6;margin:10px 0 16px}
+.bar{height:10px;border-radius:9px;background:#0005;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd54a,#fff);width:0;transition:.4s}
+.inf{display:flex;justify-content:space-between;font-weight:700;margin:8px 0;color:#ffe9a0}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:7px 4px;border-bottom:1px solid #fff3}th{color:#ffe27a}
+.ar{font-family:'Amiri','Traditional Arabic','Scheherazade New',serif;font-weight:700;font-size:1.25em;line-height:1.8}.bis{font-family:'Amiri','Traditional Arabic',serif;font-weight:700;font-size:clamp(22px,6vw,32px);color:#ffe9a0;margin-top:6px}
+.sc{overflow-x:auto}.a{font-size:12px;color:#ffffff88;background:none;border:0;margin-top:20px;cursor:pointer}
+</style></head><body><div class="w">
+<div class="bis">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+<div class="top">വിസ്ഡം അമ്പലപ്പാറ യൂണിറ്റ്</div>
+<div class="t3">QURAN QUIZ</div>
+<div class="sub">അമ്പലപ്പാറ യൂണിറ്റ് ഖുർആൻ ക്വിസ് • സൂറത്തുൽ മുഅ്മിനൂൻ 1-20</div>
+
+<div id="home" class="pg card">
+<input id="nm" placeholder="നിങ്ങളുടെ പേര്"><input id="ph" type="tel" maxlength="10" placeholder="ഫോൺ നമ്പർ (10 അക്കം)">
+<button class="b" onclick="start()">🌙 ക്വിസ് തുടങ്ങാം</button>
+<button class="b g" onclick="board()">🏆 ഫലം കാണുക</button>
+<div id="msg" style="color:#ffb4b4;min-height:20px"></div></div>
+
+<div id="quiz" class="pg card" hidden>
+<div class="inf"><span id="no"></span><span id="tm">⏱ 0:00</span></div><div class="bar"><i id="pb"></i></div>
+<div class="q" id="qq"></div><div id="op"></div></div>
+
+<div id="done" class="pg card" hidden><div style="font-size:60px">✅</div>
+<h2>ജസാകല്ലാഹു ഖൈർ!</h2><p>നിങ്ങളുടെ ഉത്തരങ്ങൾ സമർപ്പിച്ചു. അഡ്മിൻ ഫലം പ്രസിദ്ധീകരിക്കുമ്പോൾ "ഫലം കാണുക" വഴി റാങ്ക് അറിയാം.</p>
+<button class="b" onclick="show('home')">ഹോം</button></div>
+
+<div id="res" class="pg card" hidden><h2>🏆 വിജയികൾ</h2><div class="sc" id="rt"></div><button class="b g" onclick="show('home')">തിരികെ</button></div>
+
+<div id="adm" class="pg card" hidden><h2>🛠 അഡ്മിൻ പാനൽ</h2><div id="ai" class="inf"></div>
+<button class="b" id="pubb" onclick="pub()"></button><button class="b g" onclick="admin()">🔄 പുതുക്കുക</button><button class="b" style="background:linear-gradient(#ff8a8a,#d9363e);color:#fff;box-shadow:0 6px 0 #8f1c22" onclick="delall()">🗑 എല്ലാ എൻട്രികളും ഡിലീറ്റ് ചെയ്യുക</button>
+<div class="sc" id="at"></div><button class="b g" onclick="show('home')">പുറത്തുകടക്കുക</button></div>
+
+<button class="a" onclick="admin(1)">അഡ്മിൻ</button></div>
+<script>
+const API='https://script.google.com/macros/s/AKfycbyEgdzC2_BlrJya9wQU1bYYw1Tx4MwVasFCtYbRSdG366lO2p_pqbWEW9sXpYm8-j6mwQ/exec'; // Apps Script Web App URL
+// [ചോദ്യം, ശരിയുത്തരം, തെറ്റ്1, തെറ്റ്2, തെറ്റ്3]
+const Q=[
+["വിജയികളായ സത്യവിശ്വാസികളുടെ ഒന്നാമത്തെ സവിശേഷതയായി എണ്ണപ്പെട്ടിരിക്കുന്നത് എന്ത്?","തങ്ങളുടെ നമസ്കാരത്തിൽ ഭക്തി കാണിക്കുന്നവർ","സകാത്ത് കൃത്യമായി നൽകുന്നവർ","വ്യർത്ഥകാര്യങ്ങൾ ഉപേക്ഷിക്കുന്നവർ","ഗുഹ്യസ്ഥാനങ്ങൾ സൂക്ഷിക്കുന്നവർ"],
+["നമസ്കാരത്തിൽ എങ്ങോട്ടേക്ക് നോക്കാനാണ് ഹദീസുകളിൽ നിർദ്ദേശിച്ചിട്ടുള്ളത്?","സുജൂദ് ചെയ്യുന്ന (തല നിലത്തുവെക്കുന്ന) സ്ഥാനത്തേക്ക്","ആകാശത്തേക്ക് മുകളിലേക്ക്","വലതുഭാഗത്തേക്ക് തിരിഞ്ഞ്","ഇമാമിന്റെ മുഖത്തേക്ക്"],
+["'സകാത്ത്' (زكاة) എന്ന പദത്തിന്റെ ഭാഷാർത്ഥങ്ങൾ എന്തൊക്കെയാണ്?","പരിശുദ്ധി, ആത്മശുദ്ധി, വളർച്ച","ധനം, സമ്പത്ത്, ദാരിദ്ര്യം","ഭയം, ഭക്തി, വിനയം","ഉപവാസം, ക്ഷമ, സഹനം"],
+["'مَا مَلَكَتْ أَيْمَانُهُمْ' എന്ന പ്രയോഗത്തിന്റെ അർത്ഥം എന്ത്?","അവരുടെ വലങ്കൈകൾ ഉടമപ്പെടുത്തിയവർ (യുദ്ധത്തിൽ പിടിക്കപ്പെട്ട് അടിമകളാക്കപ്പെട്ടവർ)","അവരുടെ അയൽക്കാരായ കുടുംബങ്ങൾ","അവരുടെ ബന്ധുക്കളായ സ്ത്രീകൾ","അവരോടൊപ്പം യാത്ര ചെയ്യുന്നവർ"],
+["സത്യവിശ്വാസികൾക്ക് ലഭിക്കുന്ന ആത്യന്തികമായ വിജയം അല്ലെങ്കിൽ അനന്തരാവകാശം എന്താണ്?","ഫിർദൗസ് (ഉന്നത സ്വർഗ്ഗം)","ഭൂമിയുടെ അനന്തരാവകാശം മാത്രം","ദീർഘായുസ്സും സമ്പത്തും","ഇഹലോകത്തെ അധികാരം"],
+["മനുഷ്യന്റെ ആദ്യപിതാവായ ആദം (عليه السلام) എന്തിൽ നിന്നാണ് സൃഷ്ടിക്കപ്പെട്ടത്?","കളിമണ്ണിൽ നിന്നുള്ള സത്തിൽ നിന്ന്","അഗ്നിയിൽ നിന്നുള്ള ജ്വാലയിൽ നിന്ന്","പ്രകാശത്തിൽ നിന്നുള്ള കിരണത്തിൽ നിന്ന്","വെള്ളത്തിൽ നിന്നുള്ള ബാഷ്പത്തിൽ നിന്ന്"],
+["മനുഷ്യന്റെ ഉത്ഭവവുമായി ബന്ധപ്പെട്ട് ഗർഭാശയത്തെ ഖുർആൻ വിശേഷിപ്പിച്ചത് എങ്ങനെ?","ഭദ്രമായ ഭവനം","തുറന്ന മൈതാനം","ഇരുണ്ട ഗുഹ","വിശാലമായ പുഴ"],
+["രക്തപിണ്ഡം ഏത് അവസ്ഥയിലേക്ക് മാറുന്നു എന്നാണ് ഖുർആൻ പറയുന്നത്?","മാംസപിണ്ഡം","എല്ലുകൾ","ശുക്ലബിന്ദു","ചർമ്മം"],
+["മനുഷ്യൻറെ സൃഷ്ടിചരിത്രത്തിന് ശേഷം അവനെ കാത്തിരിക്കുന്ന അടുത്ത യാഥാർത്ഥ്യം എന്താണ്?","മരണം","വാർദ്ധക്യം മാത്രം","സമ്പത്ത്","വിവാഹം"],
+["മനുഷ്യർക്കുമീതെ അല്ലാഹു എന്ത് സൃഷ്ടിച്ചിരിക്കുന്നു എന്നാണ് 17-ാം വചനത്തിൽ പറയുന്നത്?","ഏഴ് മാർഗ്ഗങ്ങൾ (ആകാശങ്ങൾ)","മൂന്ന് മാർഗ്ഗങ്ങൾ (ആകാശങ്ങൾ)","അഞ്ച് മാർഗ്ഗങ്ങൾ (ആകാശങ്ങൾ)","പത്ത് മാർഗ്ഗങ്ങൾ (ആകാശങ്ങൾ)"],
+["'طَرَائِق' (ത്വറാഇഖ്) എന്ന വാക്കിന്റെ അർത്ഥമെന്താണ്?","മാർഗ്ഗങ്ങൾ","ഭക്ഷണങ്ങൾ","വസ്ത്രങ്ങൾ","പർവ്വതങ്ങൾ"],
+["ആകാശത്തുനിന്ന് ഇറക്കിയ മഴവെള്ളം കൊണ്ടുണ്ടായ പ്രയോജനം എന്താണ്?","ഈത്തപ്പനയുടെയും മുന്തിരികളുടെയും തോട്ടങ്ങൾ ഉത്ഭവിപ്പിച്ചു തന്നു","സ്വർണ്ണത്തിന്റെ ഖനികൾ ഉത്ഭവിപ്പിച്ചു തന്നു","ഉപ്പുരസമുള്ള കടലുകൾ ഉത്ഭവിപ്പിച്ചു തന്നു","മരുഭൂമിയിലെ മണൽക്കുന്നുകൾ ഉത്ഭവിപ്പിച്ചു തന്നു"],
+["സീനാപർവ്വതത്തിൽ നിന്നും ഉത്ഭവിക്കുന്ന പ്രത്യേക വൃക്ഷം ഏതാണ്?","ഒലിവ് മരം (സൈത്തൂൻ)","ഈന്തപ്പന","അത്തിമരം","മുന്തിരിവള്ളി"],
+["ഇസ്‌ലാമിൽ ഏറ്റവും ഇഷ്ടപ്പെട്ട കർമ്മം ഏതാണെന്ന് നബി (ﷺ) ചോദിച്ചപ്പോൾ മറുപടി നൽകിയത്?","നമസ്കാരം അതിന്റെ സമയത്ത് നിർവ്വഹിക്കൽ","മാതാപിതാക്കൾക്ക് നന്മ ചെയ്യൽ","അല്ലാഹുവിന്റെ മാർഗ്ഗത്തിലുള്ള സമരം","ദാനധർമ്മം ചെയ്യൽ"],
+["സത്യവിശ്വാസിയല്ലാതെ അത് സൂക്ഷിക്കില്ലെന്ന് നബി (ﷺ) പറഞ്ഞത് എന്തിന്റെ കാര്യത്തിൽ?","വുളൂഅ് (ശുദ്ധി)","നോമ്പ്","സകാത്ത്","സത്യസന്ധത"],
+["അല്ലാഹുവിങ്കൽ നമസ്കാരത്തിന് ശേഷം ഇഷ്ടപ്പെട്ട രണ്ടാമത്തെ കർമ്മം ഏതാണ്?","മാതാപിതാക്കൾക്ക് നന്മ ചെയ്യൽ","അല്ലാഹുവിന്റെ മാർഗ്ഗത്തിലുള്ള സമരം (ജിഹാദ്)","ദാനധർമ്മം ചെയ്യൽ","നോമ്പ് അനുഷ്ഠിക്കൽ"],
+["മാതാപിതാക്കൾക്ക് നന്മ ചെയ്യുന്നതിന് ശേഷം അല്ലാഹുവിന് ഏറ്റവും പ്രിയപ്പെട്ട കർമ്മം ഏതാണ്?","അല്ലാഹുവിന്റെ മാർഗ്ഗത്തിലുള്ള സമരം (ജിഹാദ്)","ഹജ്ജ് നിർവ്വഹിക്കൽ","ദാനധർമ്മം ചെയ്യൽ","നോമ്പ് അനുഷ്ഠിക്കൽ"],
+["'قَدْ أَفْلَحَ' എന്ന വാക്കിന്റെ അർത്ഥം എന്ത്?","തീർച്ചയായും വിജയിച്ചിരിക്കുന്നു","തീർച്ചയായും നഷ്ടപ്പെട്ടിരിക്കുന്നു","തീർച്ചയായും ഉറങ്ങിയിരിക്കുന്നു","തീർച്ചയായും യാത്ര ചെയ്തിരിക്കുന്നു"],
+["'سُلَالَةٍ' (സുലാലത്) എന്ന വാക്കിന്റെ അർത്ഥം എന്ത്?","സത്ത്","വെള്ളം","പൊടി","അസ്ഥി"],
+["'سِينَاء' (സീനാ) എന്നത് എന്തുമായി ബന്ധപ്പെട്ട പ്രദേശമാണ്?","ഒലിവ് മരങ്ങളും സീനാപർവ്വതവും സ്ഥിതി ചെയ്യുന്ന പ്രദേശം","ഈന്തപ്പനകൾ മാത്രം വളരുന്ന മരുഭൂമി","മുന്തിരിത്തോട്ടങ്ങൾ നിറഞ്ഞ താഴ്‌വര","ഒരു വലിയ കടലിന്റെ തീരം"]];
+const fa=t=>t.replace(/[\u0600-\u06FF][\u0600-\u06FF\s]*[\u0600-\u06FF]/g,m=>'<span class="ar" dir="rtl">'+m+'</span>');
+const $=s=>document.querySelector(s),sh=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+let me,i=0,sc=0,t0,iv,pw,pubd;
+function show(id){document.querySelectorAll('.pg').forEach(e=>e.hidden=e.id!=id)}
+async function api(o){const r=await fetch(API+'?'+new URLSearchParams(o));return r.json()}
+const fm=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+async function start(){const n=$('#nm').value.trim(),p=$('#ph').value.trim();
+ if(n.length<2||!/^\d{10}$/.test(p))return $('#msg').textContent='പേരും 10 അക്ക ഫോൺ നമ്പറും നൽകുക';
+ $('#msg').textContent='ദയവായി കാത്തിരിക്കുക...';
+ try{const r=await api({a:'chk',ph:p});if(r.dup)return $('#msg').textContent='ഈ നമ്പർ ഉപയോഗിച്ച് നേരത്തെ പങ്കെടുത്തിട്ടുണ്ട്';}catch(e){return $('#msg').textContent='കണക്ഷൻ പരാജയപ്പെട്ടു'}
+ me={n,p};i=0;sc=0;t0=Date.now();$('#msg').textContent='';show('quiz');
+ iv=setInterval(()=>$('#tm').textContent='⏱ '+fm(Math.round((Date.now()-t0)/1000)),500);nq()}
+function nq(){if(i>=Q.length)return fin();const q=Q[i];$('#no').textContent='ചോദ്യം '+(i+1)+' / '+Q.length;$('#pb').style.width=(i/Q.length*100)+'%';$('#qq').innerHTML=fa(q[0]);
+ $('#op').innerHTML='';sh(q.slice(1).map((t,k)=>[t,k==0])).forEach(([t,ok])=>{const b=document.createElement('button');b.className='b o';b.innerHTML=fa(t);
+ b.onclick=()=>{if(b.dataset.d)return;document.querySelectorAll('.o').forEach(x=>x.dataset.d=1);b.classList.add('s');if(ok)sc++;i++;setTimeout(nq,450)};$('#op').appendChild(b)})}
+async function fin(){clearInterval(iv);$('#pb').style.width='100%';const sec=Math.round((Date.now()-t0)/1000);
+ try{await api({a:'submit',n:me.n,ph:me.p,s:sc,sec});}catch(e){alert('സമർപ്പിക്കാൻ കഴിഞ്ഞില്ല. ഇന്റർനെറ്റ് പരിശോധിക്കുക');}show('done')}
+function tbl(r,adm){const m=['🥇','🥈','🥉'];return '<table><tr><th>#</th><th>പേര്</th>'+(adm?'<th>ഫോൺ</th>':'')+'<th>മാർക്ക്</th><th>സമയം</th>'+(adm?'<th></th>':'')+'</tr>'+r.map((x,k)=>'<tr><td>'+(m[k]||k+1)+'</td><td>'+esc(x.n)+'</td>'+(adm?'<td>'+esc(x.ph)+'</td>':'')+'<td>'+x.s+'/'+Q.length+'</td><td>'+fm(x.sec)+'</td>'+(adm?'<td><button onclick="del(\''+esc(x.ph)+'\')" style="background:#d9363e;color:#fff;border:0;border-radius:8px;padding:5px 9px;cursor:pointer">🗑</button></td>':'')+'</tr>').join('')+'</table>'}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>'&#'+c.charCodeAt(0)+';');
+async function board(){try{const r=await api({a:'board'});if(!r.ok)return $('#msg').textContent='ഫലം ഇതുവരെ പ്രസിദ്ധീകരിച്ചിട്ടില്ല';$('#rt').innerHTML=tbl(r.rows);show('res')}catch(e){$('#msg').textContent='കണക്ഷൻ പരാജയപ്പെട്ടു'}}
+async function admin(f){if(f)pw=prompt('അഡ്മിൻ പാസ്‌വേഡ്');if(!pw)return;try{const r=await api({a:'admin',pw});if(!r.ok){pw=null;return alert('തെറ്റായ പാസ്‌വേഡ്')}
+ pubd=r.pub;$('#ai').innerHTML='<span>പങ്കെടുത്തവർ: '+r.rows.length+'</span><span>'+(pubd?'✅ പ്രസിദ്ധീകരിച്ചു':'🔒 മറച്ചിരിക്കുന്നു')+'</span>';
+ $('#pubb').textContent=pubd?'🔒 ഫലം മറയ്ക്കുക':'📢 ഫലം പ്രസിദ്ധീകരിക്കുക';$('#at').innerHTML=tbl(r.rows,1);show('adm')}catch(e){alert('കണക്ഷൻ പരാജയപ്പെട്ടു')}}
+async function del(ph){if(!confirm('ഈ എൻട്രി ഡിലീറ്റ് ചെയ്യണോ? ('+ph+')'))return;await api({a:'del',pw,ph});admin()}
+async function delall(){if(!confirm('എല്ലാ പങ്കാളികളുടെയും വിവരങ്ങൾ ഡിലീറ്റ് ചെയ്യണോ?'))return;if(!confirm('ഉറപ്പാണോ? ഇത് തിരികെ എടുക്കാൻ കഴിയില്ല'))return;await api({a:'delall',pw});admin()}
+async function pub(){await api({a:'publish',pw,v:pubd?0:1});admin()}
+</script></body></html>
